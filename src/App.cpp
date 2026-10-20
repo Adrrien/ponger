@@ -4,8 +4,10 @@ App::App(std::string title, unsigned int width, unsigned int height) : window(sf
 
 void App::run()
 {
-    Ball* ball = new Ball(100, 100, 50, sf::Color::White);
+    Ball* ball = new Ball(100, 100, 50);
     this->addEntity(ball);
+    Cup* cup = new Cup(200, 200, 50, sf::Color::Red);
+    this->addEntity(cup);
 
     while (window.isOpen())
     {

@@ -12,6 +12,6 @@
 class Ball : public Entity
 {
 public:
-    Ball(float x, float y, float radius, sf::Color color);
+    Ball(float x, float y, float radius);
     ~Ball();
 };

@@ -19,6 +19,7 @@
 #endif
 
 #include "entities/Ball.hpp"
+#include "entities/Cup.hpp"
 
 class App
 {

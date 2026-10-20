@@ -6,7 +6,7 @@
 
 class Entity
 {
-private:
+protected:
     sf::CircleShape shape;
 public:
     Entity(float x, float y, float radius, sf::Color color);
