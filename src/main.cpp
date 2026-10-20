@@ -2,7 +2,7 @@
 
 int main()
 {
-    App app;
+    App app("Ponger", 1280, 720);
     app.run();
 
     return 0;

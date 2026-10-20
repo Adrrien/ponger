@@ -1,11 +1,13 @@
 #include "App.hpp"
 
-App::App() : window(sf::VideoMode({200, 200}), "SFML works!") {}
+App::App(std::string title, unsigned int width, unsigned int height) : window(sf::VideoMode({width, height}), title) {}
 
 void App::run()
 {
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    Ball* ball = new Ball(100, 100, 50);
+    this->addEntity(ball);
+    Cup* cup = new Cup(200, 200, 50, sf::Color::Red);
+    this->addEntity(cup);
 
     while (window.isOpen())
     {
@@ -16,9 +18,34 @@ void App::run()
         }
 
         window.clear();
-        window.draw(shape);
+        this->renderEntities();
         window.display();
     }
 }
 
-App::~App() {}
+void App::cleanUpEntities()
+{
+    for (Entity* entity : entities)
+    {
+        delete entity;
+    }
+}
+
+
+void App::renderEntities()
+{
+    for (Entity* entity : entities)
+    {
+        entity->render(window);
+    }
+}
+
+void App::addEntity(Entity* entity)
+{
+    entities.push_back(entity);
+}
+
+
+App::~App() {
+    this->cleanUpEntities();
+}
