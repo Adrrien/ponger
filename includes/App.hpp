@@ -1,15 +1,36 @@
-#if !defined(__SFML_APP_HPP__)
-#define __SFML_APP_HPP__
+#if !defined(__SFML_GRAPHICS_HPP__)
+#define __SFML_GRAPHICS_HPP__
 #include <SFML/Graphics.hpp>
-#endif // __SFML_APP_HPP__
+#endif
 
+#if !defined(__ENTITY_HPP__)
+#define __ENTITY_HPP__
+#include "Entity.hpp"
+#endif
+
+#if !defined(__VECTOR_HPP__)
+#define __VECTOR_HPP__
+#include <vector>
+#endif
+
+#if !defined(__STRING_HPP__)
+#define __STRING_HPP__
+#include <string>
+#endif
+
+#include "entities/Ball.hpp"
 
 class App
 {
 private:
     sf::RenderWindow window;
+    std::vector<Entity* > entities;
+
+    void renderEntities();
+    void cleanUpEntities();
 public:
-    App();
+    App(std::string title, unsigned int width, unsigned int height);
     ~App();
     void run();
+    void addEntity(Entity* entity);
 };
