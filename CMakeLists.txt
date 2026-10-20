@@ -15,6 +15,7 @@ file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS
 add_executable(ponger ${PROJECT_SOURCES})
 
 set(SFML_STATIC_LIBRARIES ON)
+set(SFML_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib/SFML/lib/cmake/SFML")
 find_package(SFML 3 COMPONENTS Graphics REQUIRED CONFIG)
 
 target_link_libraries(ponger PRIVATE SFML::Graphics)
