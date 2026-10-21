@@ -16,4 +16,14 @@ void Entity::setPosition(float x, float y)
     shape.setPosition(sf::Vector2f(x, y));
 }
 
+sf::Vector2f Entity::getPosition() const
+{
+    return shape.getPosition();
+}
+
+float Entity::getRadius() const
+{
+    return shape.getRadius();
+}
+
 Entity::~Entity() {}

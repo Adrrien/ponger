@@ -13,6 +13,7 @@ class Ball : public Entity
 {
 private:
     sf::Vector2f velocity;
+    sf::Vector2f startPosition;
     float slowDownFactor;
     bool isLaunched;
 
@@ -24,4 +25,5 @@ public:
     void resetXMove();
     void XMove(float speed);
     void launch(float speed);
+    void reset();
 };
