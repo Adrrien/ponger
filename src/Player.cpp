@@ -33,7 +33,15 @@ void Player::launch()
     }
 }
 
-void Player::playerEvent(const std::optional<sf::Event>* event)
+void Player::resetBall(sf::Window* window)
+{
+    delete this->ball;
+    this->lauchSpeed = 0.0f;
+    this->ball = new Ball(window->getSize().x / 2, window->getSize().y - 50, 50);
+}
+
+
+void Player::playerEvent(const std::optional<sf::Event>* event, sf::Window* window)
 {
     if (!event)
         return;
@@ -50,6 +58,11 @@ void Player::playerEvent(const std::optional<sf::Event>* event)
     {
         this->ball->resetXMove();
 
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
+    {
+        this->resetBall(window);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))

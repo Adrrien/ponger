@@ -19,7 +19,7 @@ void App::run()
             if (event->is<sf::Event::Closed>())
                 this->window.close();
             
-            this->player->playerEvent(&event);
+            this->player->playerEvent(&event, &this->window);
         }
 
         this->window.clear();

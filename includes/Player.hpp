@@ -14,6 +14,7 @@ private:
     void left();
     void right();
     void launch();
+    void resetBall(sf::Window* window);
 public:
     Player(sf::Window* window);
     ~Player();
@@ -21,5 +22,5 @@ public:
     Ball* getBall();
     
 
-    void playerEvent(const std::optional<sf::Event>* event);
+    void playerEvent(const std::optional<sf::Event>* event, sf::Window* window);
 };
