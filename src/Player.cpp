@@ -1,5 +1,10 @@
 #include "Player.hpp"
+#include <algorithm>
 
+namespace
+{
+constexpr float maxLaunchSpeed = 15.0f;
+}
 
 Player::Player(sf::Window* window)
 {
@@ -12,6 +17,11 @@ Player::Player(sf::Window* window)
 Ball* Player::getBall()
 {
     return this->ball;
+}
+
+float Player::getLaunchProgress() const
+{
+    return this->lauchSpeed / maxLaunchSpeed;
 }
 
 void Player::left()
@@ -67,7 +77,7 @@ void Player::playerEvent(const std::optional<sf::Event>* event, sf::Window* wind
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
     {
-        this->lauchSpeed += this->launchForce;
+        this->lauchSpeed = std::min(this->lauchSpeed + this->launchForce, maxLaunchSpeed);
     }
     else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
     {

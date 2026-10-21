@@ -67,9 +67,10 @@ cmake --build build\ponger-build --config Release
 ## Gameplay
 
 Use the left and right arrow keys to position the ball, then hold
-**Space** to charge and release it to launch. Put the ball in the red cup
-to win the round: the score increases, the window title shows the win, and
-the ball returns to its starting position.
+**Space** to charge and release it to launch. The green gauge at the top
+left shows the current launch power. Put the ball in the red cup to win the
+round: the score increases, the window title shows the win, and the ball
+returns to its starting position.
 
 ## Notes
 
