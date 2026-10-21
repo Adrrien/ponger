@@ -11,7 +11,17 @@
 
 class Ball : public Entity
 {
+private:
+    sf::Vector2f velocity;
+    float slowDownFactor;
+    bool isLaunched;
+
 public:
     Ball(float x, float y, float radius);
     ~Ball();
+
+    void move(sf::Window* window);
+    void resetXMove();
+    void XMove(float speed);
+    void launch(float speed);
 };

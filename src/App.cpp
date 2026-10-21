@@ -1,25 +1,31 @@
 #include "App.hpp"
 
-App::App(std::string title, unsigned int width, unsigned int height) : window(sf::VideoMode({width, height}), title) {}
+App::App(std::string title, unsigned int width, unsigned int height) : window(sf::VideoMode({width, height}), title)
+{
+    this->player = new Player(&window);
+}
 
 void App::run()
 {
-    Ball* ball = new Ball(100, 100, 50);
-    this->addEntity(ball);
     Cup* cup = new Cup(200, 200, 50, sf::Color::Red);
+    Ball* ball = this->player->getBall();
     this->addEntity(cup);
+    this->addEntity(ball);
 
-    while (window.isOpen())
+    while (this->window.isOpen())
     {
-        while (const std::optional event = window.pollEvent())
+        while (const std::optional event = this->window.pollEvent())
         {
             if (event->is<sf::Event::Closed>())
-                window.close();
+                this->window.close();
+            
+            this->player->playerEvent(&event);
         }
 
-        window.clear();
+        this->window.clear();
+        ball->move(&this->window);
         this->renderEntities();
-        window.display();
+        this->window.display();
     }
 }
 

@@ -18,13 +18,14 @@
 #include <string>
 #endif
 
-#include "entities/Ball.hpp"
+#include "Player.hpp"
 #include "entities/Cup.hpp"
 
 class App
 {
 private:
     sf::RenderWindow window;
+    Player* player;
     std::vector<Entity* > entities;
 
     void renderEntities();
