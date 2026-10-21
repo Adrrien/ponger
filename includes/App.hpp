@@ -28,6 +28,7 @@ private:
     Player* player;
     std::vector<Entity* > entities;
 
+    void entitiesDeclaration();
     void renderEntities();
     void cleanUpEntities();
 public:

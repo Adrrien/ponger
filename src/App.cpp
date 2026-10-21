@@ -5,6 +5,16 @@ App::App(std::string title, unsigned int width, unsigned int height) : window(sf
     this->player = new Player(&window);
 }
 
+
+void App::entitiesDeclaration()
+{
+    this->cleanUpEntities();
+    Cup* cup = new Cup(200, 200, 50, sf::Color::Red);
+    Ball* ball = this->player->getBall();
+    this->addEntity(cup);
+    this->addEntity(ball);
+}
+
 void App::run()
 {
     Cup* cup = new Cup(200, 200, 50, sf::Color::Red);
@@ -33,8 +43,10 @@ void App::cleanUpEntities()
 {
     for (Entity* entity : entities)
     {
-        delete entity;
+        if (entity != nullptr)
+            delete entity;
     }
+    entities.clear();
 }
 
 
