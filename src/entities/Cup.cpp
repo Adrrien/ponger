@@ -14,7 +14,15 @@ bool Cup::contains(const Ball* ball) const
     if (!ball)
         return false;
 
-    const sf::Vector2f distance = ball->getPosition() - this->getPosition();
-    const float radiusSum = ball->getRadius() + this->getRadius();
-    return (distance.x * distance.x) + (distance.y * distance.y) <= radiusSum * radiusSum;
+    const float ballRadius = ball->getRadius();
+    const float cupRadius = this->getRadius();
+    if (cupRadius <= ballRadius)
+        return false;
+
+    const sf::Vector2f ballCenter = ball->getPosition() + sf::Vector2f(ballRadius, ballRadius);
+    const sf::Vector2f cupCenter = this->getPosition() + sf::Vector2f(cupRadius, cupRadius);
+    const sf::Vector2f distance = ballCenter - cupCenter;
+    const float allowedDistance = cupRadius - ballRadius;
+    return (distance.x * distance.x) + (distance.y * distance.y) <=
+        allowedDistance * allowedDistance;
 }

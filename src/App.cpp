@@ -18,7 +18,7 @@ void App::entitiesDeclaration()
 
 void App::run()
 {
-    Cup* cup = new Cup(200, 200, 50, sf::Color::Red);
+    Cup* cup = new Cup(200, 200, 100, sf::Color::Red);
     Ball* ball = this->player->getBall();
     this->addEntity(cup);
 
