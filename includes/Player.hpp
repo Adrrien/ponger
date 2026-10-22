@@ -20,6 +20,7 @@ public:
     ~Player();
 
     Ball* getBall();
+    float getLaunchProgress() const;
     
 
     void playerEvent(const std::optional<sf::Event>* event, sf::Window* window);
