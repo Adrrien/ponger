@@ -14,4 +14,6 @@ public:
 
     void render(sf::RenderWindow& window);
     void setPosition(float x, float y);
+    sf::Vector2f getPosition() const;
+    float getRadius() const;
 };

@@ -2,6 +2,7 @@
 
 Ball::Ball(float x, float y, float radius) : Entity(x, y, radius, sf::Color::White) 
 {
+    this->startPosition = sf::Vector2f(x, y);
     this->velocity = sf::Vector2f(0, 0);
     this->isLaunched = false;
     this->slowDownFactor = 0.99f;
@@ -52,6 +53,13 @@ void Ball::launch(float speed)
         this->isLaunched = true;
         this->velocity.y = -speed;
     }
+}
+
+void Ball::reset()
+{
+    this->shape.setPosition(this->startPosition);
+    this->velocity = sf::Vector2f(0, 0);
+    this->isLaunched = false;
 }
 
 Ball::~Ball() = default;

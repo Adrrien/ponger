@@ -1,4 +1,5 @@
 #include "App.hpp"
+#include <algorithm>
 
 App::App(std::string title, unsigned int width, unsigned int height) : window(sf::VideoMode({width, height}), title)
 {
@@ -17,10 +18,9 @@ void App::entitiesDeclaration()
 
 void App::run()
 {
-    Cup* cup = new Cup(200, 200, 50, sf::Color::Red);
+    Cup* cup = new Cup(200, 200, 100, sf::Color::Red);
     Ball* ball = this->player->getBall();
     this->addEntity(cup);
-    this->addEntity(ball);
 
     while (this->window.isOpen())
     {
@@ -34,7 +34,10 @@ void App::run()
 
         this->window.clear();
         ball->move(&this->window);
+        this->checkWin(cup, ball);
         this->renderEntities();
+        ball->render(this->window);
+        this->renderPowerGauge();
         this->window.display();
     }
 }
@@ -56,6 +59,34 @@ void App::renderEntities()
     {
         entity->render(window);
     }
+}
+
+void App::checkWin(Cup* cup, Ball* ball)
+{
+    if (!cup || !ball || !cup->contains(ball))
+        return;
+
+    this->window.setTitle("Ponger - WIN!");
+    ball->reset();
+}
+
+void App::renderPowerGauge()
+{
+    const float progress = std::clamp(this->player->getLaunchProgress(), 0.0f, 1.0f);
+    const sf::Vector2f gaugeSize(300.0f, 24.0f);
+
+    sf::RectangleShape background(gaugeSize);
+    background.setPosition(sf::Vector2f(30.0f, 30.0f));
+    background.setFillColor(sf::Color(50, 50, 50));
+    background.setOutlineThickness(2.0f);
+    background.setOutlineColor(sf::Color::White);
+
+    sf::RectangleShape power(sf::Vector2f(gaugeSize.x * progress, gaugeSize.y));
+    power.setPosition(background.getPosition());
+    power.setFillColor(sf::Color::Green);
+
+    this->window.draw(background);
+    this->window.draw(power);
 }
 
 void App::addEntity(Entity* entity)

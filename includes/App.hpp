@@ -30,7 +30,9 @@ private:
 
     void entitiesDeclaration();
     void renderEntities();
+    void renderPowerGauge();
     void cleanUpEntities();
+    void checkWin(Cup* cup, Ball* ball);
 public:
     App(std::string title, unsigned int width, unsigned int height);
     ~App();
